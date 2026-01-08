@@ -108,3 +108,17 @@ The application is deployed as a Docker container running a Spring Boot backend 
 Incoming requests are routed through a cloud load balancer to the containerized application.
 The backend uses an in-memory H2 database for simplicity.
 This setup allows easy scaling, isolation, and simplified deployment using container images.
+
+### Assumptions / Design Decisions
+
+1. The DevOps setup focuses only on the backend as required.
+2. The backend is containerized using Docker for consistent deployment.
+3. Unit tests are executed in the CI pipeline, while tests are skipped during Docker image creation to optimize build time.
+4. A multi-stage Docker build is used to reduce image size.
+5. Deployment targets Azure App Service using container images.
+6. An in-memory H2 database is used for simplicity and demonstration purposes.
+
+### Trade-offs / Future Improvements
+1. H2 is used for simplicity and can be replaced with a managed database for production.
+2. The CI/CD pipeline is minimal and can be extended with automated deployment and rollback.
+3. Security and monitoring can be improved for production readiness
