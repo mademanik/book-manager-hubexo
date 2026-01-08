@@ -1,0 +1,51 @@
+<mat-toolbar>
+  <button
+    class="sidebar-toggle"
+    type="button"
+    aria-label="Toggle sidebar"
+    mat-icon-button
+    (click)="sidenavToggle()"
+  >
+    <div *ngIf="this.isMobile">
+      <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    </div>
+
+    <div *ngIf="!this.isMobile">
+      <mat-icon>menu</mat-icon>
+    </div>
+  </button>
+
+  <!--  <app-notif (sendEventToParent)="getNotifEvent($event)"></app-notif>-->
+  <app-profile></app-profile>
+</mat-toolbar>
+
+<mat-sidenav-container id="sidenav">
+  <mat-sidenav mode="side" #sidenav>
+    <img
+      class="avatar mat-elevation-z8"
+      src="../../../assets/avatar/avatar.jpeg"
+    />
+
+    <h4 class="name">Made Manik</h4>
+    <p class="designation">Fullstack Developer</p>
+
+    <mat-divider></mat-divider>
+    <a
+      mat-button
+      class="menu-button"
+      [ngClass]="activeMenu === 'books' ? 'active' : ''"
+      routerLink="/books"
+      (click)="setMenuActive('books')"
+    >
+      <mat-icon>person</mat-icon>
+      <span class="btn-text">Books</span>
+    </a>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z4">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

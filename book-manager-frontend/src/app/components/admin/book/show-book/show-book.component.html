@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Show Book</h2>
+<mat-dialog-content class="mat-typography" *ngIf="row">
+  <mat-form-field class="form-first" appearance="outline">
+    <mat-label>Title</mat-label>
+    <input
+      matInput
+      placeholder="Title"
+      value="{{ row.title }}"
+      readonly
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-first" appearance="outline">
+    <mat-label>Author</mat-label>
+    <input
+      matInput
+      placeholder="Author"
+      value="{{ row.author }}"
+      readonly
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-first" appearance="outline">
+    <mat-label>ISBN</mat-label>
+    <input
+      matInput
+      placeholder="isbn"
+      value="{{ row.isbn }}"
+      readonly
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-first" appearance="outline">
+    <mat-label>Publication Year</mat-label>
+    <input
+      matInput
+      placeholder="publicationYear"
+      value="{{ row.publicationYear }}"
+      readonly
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-first" appearance="outline">
+    <mat-label>Genre</mat-label>
+    <input
+      matInput
+      placeholder="genre"
+      value="{{ row.genre }}"
+      readonly
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-first" appearance="outline">
+    <mat-label>Description</mat-label>
+    <input
+      matInput
+      placeholder="description"
+      value="{{ row.description }}"
+      readonly
+    />
+  </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button color="accent" mat-dialog-close>Close</button>
+</mat-dialog-actions>

@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "b9468b3c-8ae5-45cf-998d-e8c9dbacd935",
+		"name": "book-manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17177589"
+	},
+	"item": [
+		{
+			"name": "Create Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\r\n//     \"title\" : \"Romeo and Juliet\",\r\n//     \"author\" : \"Made Manik\",\r\n//     \"isbn\" : \"9780132350884\",\r\n//     \"publicationYear\" : 2025,\r\n//     \"genre\" : \"Romance\",\r\n//     \"description\" : \"Best seller\"\r\n// }\r\n\r\n{\r\n    \"title\" : \"Beauty and the beast\",\r\n    \"author\" : \"Made Manik\",\r\n    \"isbn\" : \"9780132350885\",\r\n    \"publicationYear\" : 2024,\r\n    \"genre\" : \"Love\",\r\n    \"description\" : \"New coming\"\r\n}\r\n\r\n// {\r\n//     \"title\" : \"Harry Potter\",\r\n//     \"author\" : \"JK Rowling\",\r\n//     \"isbn\" : \"9780132350886\",\r\n//     \"publicationYear\" : 2005,\r\n//     \"genre\" : \"Fantasy\",\r\n//     \"description\" : \"World best book\"\r\n// }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Romeo and Juliet\",\r\n    \"author\" : \"Made Manik\",\r\n    \"isbn\" : \"9780132350884\",\r\n    \"publicationYear\" : 2025,\r\n    \"genre\" : \"Romance\",\r\n    \"description\" : \"Best seller\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jan 2026 12:23:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"title\": \"Romeo and Juliet\",\n    \"author\": \"Made Manik\",\n    \"isbn\": \"9780132350884\",\n    \"publicationYear\": 2025,\n    \"genre\": \"Romance\",\n    \"description\": \"Best seller\"\n}"
+				},
+				{
+					"name": "Validation error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// {\r\n//     \"title\" : \"Romeo and Juliet\",\r\n//     \"author\" : \"Made Manik\",\r\n//     \"isbn\" : \"9780132350884\",\r\n//     \"publicationYear\" : 2025,\r\n//     \"genre\" : \"Romance\",\r\n//     \"description\" : \"Best seller\"\r\n// }\r\n\r\n// {\r\n//     \"title\" : \"Beauty and the beast\",\r\n//     \"author\" : \"Made Manik\",\r\n//     \"isbn\" : \"9780132350885\",\r\n//     \"publicationYear\" : 2024,\r\n//     \"genre\" : \"Love\",\r\n//     \"description\" : \"New coming\"\r\n// }\r\n\r\n{\r\n    // \"title\" : \"Harry Potter\",\r\n    \"author\" : \"JK Rowling\",\r\n    \"isbn\" : \"9780132350886\",\r\n    \"publicationYear\" : 2005,\r\n    \"genre\" : \"Fantasy\",\r\n    \"description\" : \"World best book\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jan 2026 12:55:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Validation failed\",\n    \"timestamp\": \"2026-01-06T19:55:12.8631026\",\n    \"error\": \"Bad Request\",\n    \"fields\": {\n        \"title\": \"must not be blank\"\n    },\n    \"status\": 400\n}"
+				}
+			]
+		},
+		{
+			"name": "Findall (search)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"books"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "jk",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Findall (search)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books?q=jk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "jk"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jan 2026 12:37:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 3,\n        \"title\": \"Harry Potter\",\n        \"author\": \"JK Rowling\",\n        \"isbn\": \"9780132350886\",\n        \"publicationYear\": 2005,\n        \"genre\": \"Fantasy\",\n        \"description\": \"World best book\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Find by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/books/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"books",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Find by id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jan 2026 12:42:36 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"title\": \"Romeo and Juliet 2\",\n    \"author\": \"Made Manik 2\",\n    \"isbn\": \"9780132350889\",\n    \"publicationYear\": 2026,\n    \"genre\": \"Romance 2\",\n    \"description\": \"Best seller 2\"\n}"
+				},
+				{
+					"name": "Book not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"3"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jan 2026 12:46:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Not Found\",\n    \"status\": 404,\n    \"timestamp\": \"2026-01-06T19:46:46.1584673\",\n    \"message\": \"Book not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Romeo and Juliet 2\",\r\n    \"author\" : \"Made Manik 2\",\r\n    \"isbn\" : \"9780132350889\",\r\n    \"publicationYear\" : 2026,\r\n    \"genre\" : \"Romance 2\",\r\n    \"description\" : \"Best seller 2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/books/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"books",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update by id",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Romeo and Juliet 2\",\r\n    \"author\" : \"Made Manik 2\",\r\n    \"isbn\" : \"9780132350889\",\r\n    \"publicationYear\" : 2026,\r\n    \"genre\" : \"Romance 2\",\r\n    \"description\" : \"Best seller 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/books/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jan 2026 12:42:44 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"title\": \"Romeo and Juliet 2\",\n    \"author\": \"Made Manik 2\",\n    \"isbn\": \"9780132350889\",\n    \"publicationYear\": 2026,\n    \"genre\": \"Romance 2\",\n    \"description\": \"Best seller 2\"\n}"
+				},
+				{
+					"name": "Book not found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Romeo and Juliet 2\",\r\n    \"author\" : \"Made Manik 2\",\r\n    \"isbn\" : \"9780132350889\",\r\n    \"publicationYear\" : 2026,\r\n    \"genre\" : \"Romance 2\",\r\n    \"description\" : \"Best seller 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/books/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"3"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jan 2026 12:46:19 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Not Found\",\n    \"status\": 404,\n    \"timestamp\": \"2026-01-06T19:46:19.0406762\",\n    \"message\": \"Book not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/books/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"books",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete by id",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"2"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jan 2026 12:45:51 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Book not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"3"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jan 2026 12:44:56 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Not Found\",\n    \"status\": 404,\n    \"timestamp\": \"2026-01-06T19:44:56.6969554\",\n    \"message\": \"Book not found\"\n}"
+				}
+			]
+		}
+	]
+}
