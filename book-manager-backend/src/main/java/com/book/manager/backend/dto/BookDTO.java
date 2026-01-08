@@ -19,6 +19,7 @@ public class BookDTO {
     @NotBlank
     private String author;
 
+    @NotBlank
     @Pattern(regexp = "^(97(8|9))?\\d{9}(\\d|X)$",
             message = "Invalid ISBN format")
     private String isbn;

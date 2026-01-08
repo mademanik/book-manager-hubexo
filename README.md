@@ -1,3 +1,5 @@
+### Overview
+   ![Overview](capture/overview.png) 
 ### Prerequisite
 
 1. Check ng version
@@ -58,3 +60,51 @@
    ```
 10. open to port http://localhost:4200 on browser to open angular web page
 11. running client done
+
+### Azure App Service Deployment Steps
+
+1. Create Azure Container Registry (ACR) used to store backend Docker image
+2. Build & Tag Docker Image
+```
+docker build -t book-manager-backend .
+docker tag book-manager-backend acrname.azurecr.io/book-manager-backend:latest
+```
+3. Push Image to ACR
+```
+docker push acrname.azurecr.io/book-manager-backend:latest
+```
+4. Create Azure App Service (Linux, Container-based)
+5. Configure App Service
+```
+Image: acrname.azurecr.io/book-manager-backend:latest
+Port: 8080
+```
+6. Set Environment Variables
+```
+SPRING_PROFILES_ACTIVE=prod
+```
+7. Azure pull the image and runs the container
+
+### Architecture Diagram (ASCII)
+	       ┌─────────────────────┐
+           │   Client / Browser  │
+           └──────────┬──────────┘
+                      │
+           ┌──────────▼──────────┐
+           │  Cloud Load Balancer│
+           └──────────┬──────────┘
+                      │
+           ┌──────────▼──────────┐
+           │  App Service        │
+           │  (Docker Container) │
+           │  Spring Boot API    │
+           └──────────┬──────────┘
+                      │
+           ┌──────────▼──────────┐
+           │     H2 Database     │
+           │   (In-memory DB)    │
+           └─────────────────────┘
+The application is deployed as a Docker container running a Spring Boot backend on a managed cloud service.
+Incoming requests are routed through a cloud load balancer to the containerized application.
+The backend uses an in-memory H2 database for simplicity.
+This setup allows easy scaling, isolation, and simplified deployment using container images.

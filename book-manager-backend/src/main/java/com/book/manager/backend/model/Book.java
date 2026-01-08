@@ -30,6 +30,7 @@ public class Book {
 
     @Pattern(regexp = "^(97(8|9))?\\d{9}(\\d|X)$",
             message = "Invalid ISBN format")
+    @NotBlank
     private String isbn;
 
     @NotNull
