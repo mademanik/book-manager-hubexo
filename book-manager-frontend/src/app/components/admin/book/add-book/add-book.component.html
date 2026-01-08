@@ -1,5 +1,5 @@
 <form [formGroup]="bookForm" (ngSubmit)="submit()">
-  <h2 mat-dialog-title>Add Book</h2>
+  <h2 mat-dialog-title>{{dialogTitle}}</h2>
   <mat-dialog-content class="mat-typography">
     <mat-form-field class="form-first" appearance="outline">
       <mat-label>Title</mat-label>
@@ -45,7 +45,7 @@
       cdkFocusInitial
       type="submit"
     >
-      Submit
+      {{submitLabel}}
     </button>
   </mat-dialog-actions>
 </form>

@@ -31,7 +31,6 @@ import {BookComponent} from './book/book.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddBookComponent } from './book/add-book/add-book.component';
 import { DeleteBookComponent } from './book/delete-book/delete-book.component';
-import { EditBookComponent } from './book/edit-book/edit-book.component';
 import { ShowBookComponent } from './book/show-book/show-book.component';
 
 const routes: Routes = [
@@ -53,7 +52,6 @@ const routes: Routes = [
     ProfileComponent,
     AddBookComponent,
     DeleteBookComponent,
-    EditBookComponent,
     ShowBookComponent
   ],
   imports: [

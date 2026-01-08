@@ -20,10 +20,14 @@
         <span class="text">Add Book</span>
       </button>
     </div>
+
     <div class="head-table">
       <mat-card>
         <mat-card-content>
           <h3 class="card-title">Book List</h3>
+          <div *ngIf="tableError" class="app-table-error-banner">
+            {{ tableError }}
+          </div>
           <mat-form-field>
             <mat-label>Search Book...</mat-label>
             <input
@@ -93,7 +97,7 @@
                     mat-mini-fab
                     color="accent"
                     aria-label="Show"
-                    (click)="editDialog(element.id)"
+                    (click)="addDialog(element.id)"
                   >
                     <mat-icon>mode</mat-icon>
                   </button>

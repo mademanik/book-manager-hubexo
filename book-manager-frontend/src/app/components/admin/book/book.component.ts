@@ -9,7 +9,7 @@ import {Book} from 'src/app/models/book.model';
 import {ShowBookComponent} from "./show-book/show-book.component";
 import {AddBookComponent} from "./add-book/add-book.component";
 import {DeleteBookComponent} from "./delete-book/delete-book.component";
-import {EditBookComponent} from "./edit-book/edit-book.component";
+import {catchError, of} from "rxjs";
 
 @Component({
   selector: 'app-book',
@@ -33,6 +33,8 @@ export class BookComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   @ViewChild(MatSort) sort: any = MatSort;
 
+  tableError: string | null = null;
+
   constructor(
     public dialog: MatDialog,
     private bookService: BookService,
@@ -45,14 +47,21 @@ export class BookComponent implements AfterViewInit, OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  applyFilter(event: Event) {
+    const q = (event.target as HTMLInputElement).value.trim();
+    this.bookService.findAllBooks(q ? q : undefined).pipe(
+      catchError(err => {
+        console.error(err);
+        this.openSnackbarError('Error', 'Search failed');
+        return of([]);
+      })
+    ).subscribe((res) => {
+      this.dataSource.data = res;
+      this.dataSource.paginator?.firstPage();
+    });
   }
+
 
   ngOnInit(): void {
     this.findAllBooks()
@@ -71,10 +80,11 @@ export class BookComponent implements AfterViewInit, OnInit {
     });
   }
 
-  addDialog() {
+  addDialog(id?: String) {
     const dialogRef = this.dialog.open(AddBookComponent, {
       width: '50%',
-      position: {top: '20px'},
+      position: { top: '20px' },
+      data: {id: id},
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -82,13 +92,19 @@ export class BookComponent implements AfterViewInit, OnInit {
         this.findAllBooks();
       }, 500);
 
+      this.tableError = null;
+
       if (result?.message == 'success') {
         this.openSnackbarSuccess('Success', 'Data successfully created');
-      } else if (result?.message == 'error') {
-        this.openSnackbarError('Error', 'Data create Failed');
-      } else if (result?.message == 'invalid') {
-        this.openSnackbarError('Error', 'Form invalid');
+      } else if (result?.message === 'invalid' || result?.message === 'error') {
+        const fieldMsgs = result?.fields
+          ? Object.entries(result.fields).map(([k, v]) => `${k}: ${v}`).join(' | ')
+          : null;
+        this.tableError = fieldMsgs
+          ? `${result.error ?? 'Validation failed'} — ${fieldMsgs}`
+          : (result.error ?? 'Validation failed');
       }
+
     });
   }
 
@@ -121,22 +137,6 @@ export class BookComponent implements AfterViewInit, OnInit {
       setTimeout(() => {
         this.findAllBooks();
       }, 500);
-    });
-  }
-
-  editDialog(id: String) {
-    const dialogRef = this.dialog.open(EditBookComponent, {
-      width: '50%',
-      position: {top: '20px'},
-      data: {id: id},
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      setTimeout(() => {
-        this.findAllBooks();
-      }, 500);
-
-      this.resultSnackBar(result, 'update');
     });
   }
 

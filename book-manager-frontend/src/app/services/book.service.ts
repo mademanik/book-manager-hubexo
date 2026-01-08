@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpParams, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Book} from 'src/app/models/book.model';
 import {environment} from 'src/environments/environment';
@@ -28,11 +28,14 @@ export class BookService {
     return this._httpClient.request(req);
   }
 
-  findAllBooks(): Observable<Book[]> {
+  findAllBooks(q?: string): Observable<Book[]> {
+    const params = q ? new HttpParams().set('q', q) : undefined;
     return this._httpClient.get<Book[]>(
-      `${this.baseUrl}/api/books`
+      `${this.baseUrl}/api/books`,
+      { params }
     );
   }
+
 
   findBookById(id: any): Observable<Book> {
     return this._httpClient.get<Book>(
